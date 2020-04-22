@@ -1,6 +1,6 @@
 <template >
   <div class="layout-component">
-      <img ref="layout-img" :src="`/figures/${view}/${pid}_${task}.png`" v-bind:class="'layoutimg'" @mousedown="enlarge" @mouseup="normalsize" />
+      <img ref="layout-img" :src="`./figures/${view}/${pid}_${task}.png`" v-bind:class="'layoutimg'" @mousedown="enlarge" @mouseup="normalsize" />
       <span>P{{ pid }}<span v-if="tasklabel == 'yes'" > - {{task}}</span></span>
   </div>
 </template>
@@ -26,7 +26,8 @@ export default {
 
       var id = this.$refs["layout-img"].currentSrc;
       var srct = id;
-      var task = srct.split("/")[4];
+      var split = srct.split("/")
+      var task = split[split.length - 2];
       var srcf = srct.replace(task, "Front");
       var srcr = srct.replace(task, "Right");
       var srcl = srct.replace(task, "Left");
