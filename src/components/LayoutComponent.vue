@@ -1,7 +1,7 @@
 <template >
-  <div class="layout-component">
+  <div class="layout-component" title="Click to see all views.">
       <img ref="layout-img" :src="`./figures/${view}/${pid}_${task}.png`" v-bind:class="'layoutimg'" @mousedown="enlarge" @mouseup="normalsize" />
-      <span>P{{ pid }}<span v-if="tasklabel == 'yes'" > - {{task}}</span></span>
+      <span>P{{ pid }}<span v-if="tasklabel == 'yes'" > – {{task}}</span></span>
   </div>
 </template>
 
@@ -44,9 +44,12 @@ export default {
       document.getElementById("modal-view-f").innerHTML = "Front";
       document.getElementById("modal-view-r").innerHTML = "Right";
       document.getElementById("modal-view-l").innerHTML = "Left";
-      document.getElementById("modal-view-p").innerHTML = "Perspective";
+      document.getElementById("modal-view-p").innerHTML = "Isometric";
       
-      document.getElementById("modal-pid").innerHTML = "Participant " + id.split("/")[5].split("_")[0] + ", " + id.split("/")[5].split("_")[1].split(".")[0] + " task.";
+      var pID = id.split("/")[id.split("/").length -1].split("_")[0];
+      var task = id.split("/")[id.split("/").length -1].split("_")[1].split(".")[0];
+      console.log(task);
+      document.getElementById("modal-pid").innerHTML = "Participant " + pID + " – " + task + " task.";
     },
     normalsize: function(){
       var lens = document.getElementById("modal");
